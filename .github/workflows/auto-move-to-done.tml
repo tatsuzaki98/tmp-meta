@@ -1,0 +1,21 @@
+# This workflow automatically moves closed issues to the "Done" column in a specific project.
+name: Move Closed Issues to Done
+
+on:
+  issues:
+    types: [closed] # Run this workflow only when an issue is closed
+
+jobs:
+  move-to-done-column:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Move issue to Done column
+        uses: actions/add-to-project@v1.0.1
+        with:
+          # The URL of your project. Find this in your browser's address bar.
+          project-url: "https://github.com/users/YOUR_USERNAME/projects/YOUR_PROJECT_NUMBER"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # The name of the status column you want to move the issue to.
+          # This must exactly match the name in your project board.
+          labeled: "Done"
+
